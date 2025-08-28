@@ -775,75 +775,101 @@ p {
 }
 
 /* Hexagon grid for skills */
+/* === Responsive Skills Hex Grid (no pseudo triangles) === */
+
+/* Use CSS Grid so items auto-wrap cleanly */
 .hexagon-grid {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 16px;
   margin: 0 auto;
   max-width: 900px;
 }
 
+/* Hexagon tile using clip-path (prevents overlap issues) */
 .hexagon {
   position: relative;
-  width: 120px;
-  height: 70px;
-  background-color: white;
-  margin: 35px 10px;
+  display: grid;
+  place-items: center;
+  padding: 10px 12px;
+  background: #fff;
   box-shadow: var(--shadow);
+  border-radius: 12px; /* softens edges slightly under clip-path */
   transition: var(--transition);
   cursor: pointer;
+
+  /* Keep a stable hex shape that scales */
+  aspect-ratio: 2 / 1.15;
+  clip-path: polygon(
+    25% 0%,
+    75% 0%,
+    100% 50%,
+    75% 100%,
+    25% 100%,
+    0% 50%
+  );
 }
 
-.hexagon:before,
-.hexagon:after {
-  content: "";
-  position: absolute;
-  width: 0;
-  border-left: 60px solid transparent;
-  border-right: 60px solid transparent;
-}
-
-.hexagon:before {
-  bottom: 100%;
-  border-bottom: 35px solid white;
-}
-
-.hexagon:after {
-  top: 100%;
-  width: 0;
-  border-top: 35px solid white;
-}
-
+/* Hover effect */
 .hexagon:hover {
-  transform: translateY(-10px);
+  transform: translateY(-6px);
   box-shadow: 0 15px 30px rgba(99, 102, 241, 0.3);
+}
+
+/* Inner content */
+.hexagon-content {
+  display: grid;
+  place-items: center;
+  text-align: center;
+  gap: 6px;
+  padding: 6px 8px;
+}
+
+/* Icon + label sizing */
+.hexagon-content i {
+  font-size: 1.8rem;
+  color: var(--secondary-color);
+  transition: var(--transition);
 }
 
 .hexagon:hover .hexagon-content i {
   color: var(--primary-color);
 }
 
-.hexagon-content {
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  z-index: 1;
-  position: relative;
-}
-
-.hexagon-content i {
-  font-size: 2rem;
-  margin-bottom: 5px;
-  color: var(--secondary-color);
-  transition: var(--transition);
-}
-
 .hexagon-content span {
-  font-size: 0.8rem;
+  font-size: 0.9rem;
   font-weight: 500;
+  line-height: 1.2;
+  white-space: normal;       /* allow wrapping */
+  word-break: break-word;    /* prevent overflow on long tokens */
+  text-wrap: balance;        /* nice multi-line balance (supported in modern browsers) */
 }
+
+/* Responsive tweaks */
+@media (max-width: 991.98px) {
+  .hexagon-grid {
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 14px;
+  }
+  .hexagon-content i { font-size: 1.6rem; }
+  .hexagon-content span { font-size: 0.85rem; }
+}
+
+@media (max-width: 575.98px) {
+  .hexagon-grid {
+    grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
+    gap: 12px;
+  }
+  .hexagon-content i { font-size: 1.45rem; }
+  .hexagon-content span {
+    font-size: 0.82rem;
+    display: -webkit-box;        /* clamp to 2 lines on tiny screens */
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+}
+
 
 /* Expertise Section */
 /* .expertise-card {
@@ -1189,3 +1215,4 @@ body.animating {
   left: 0; right: 0;
   margin: 0 auto;
 }
+
