@@ -4,6 +4,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Parsa Mirfasihi | Physical Design Engineer</title>
+
+    <!-- Bootstrap / Icons / Fonts -->
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
       rel="stylesheet"
@@ -16,13 +18,466 @@
       href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
       rel="stylesheet"
     />
+
+    <!-- Your main stylesheet -->
     <link rel="stylesheet" href="style.css" />
     <link rel="icon" href="static/favicon.png" type="image/png" />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css"
     />
+
+    <!-- THEME + OVERRIDES -->
+    <style>
+      :root {
+        --color-primary: #3f5fa8;
+        --color-primary-light: #8aa1dd;
+        --color-primary-dark: #243a6b;
+
+        --color-bg-main: #f5f6f8;
+        --color-bg-elevated: #ffffff;
+        --color-text-main: #18212f;
+        --color-text-muted: #6b7280;
+        --color-border-soft: #dde1ec;
+      }
+
+      body {
+        font-family: "Poppins", sans-serif;
+        /* keep your global soft background */
+        background: radial-gradient(
+          circle at top,
+          #e7efff 0%,
+          #f6e9d7 40%,
+          var(--color-bg-main) 100%
+        );
+        color: var(--color-text-main);
+      }
+
+      /* Shared section background: same fade for EVERY section */
+      .section-theme {
+        background: radial-gradient(
+          circle at top,
+          #e7efff 0%,
+          #f6e4cb 45%,
+          var(--color-bg-main) 100%
+        );
+      }
+
+      /* General section spacing */
+      section.section-theme {
+        padding-top: 2.5rem;
+        padding-bottom: 2.5rem;
+      }
+
+      /* Hero just adds more top padding (fixed navbar) */
+      #hero.section-theme {
+        padding-top: 7rem;
+        padding-bottom: 2.5rem;
+      }
+
+      @media (max-width: 768px) {
+        section.section-theme {
+          padding-top: 2rem;
+          padding-bottom: 2rem;
+        }
+        #hero.section-theme {
+          padding-top: 6rem;
+          padding-bottom: 2rem;
+        }
+      }
+
+      /* Navbar + hero titles: solid blue, no gradient text */
+      .navbar-brand,
+      .hero-title {
+        background: none;
+        -webkit-background-clip: initial;
+        -webkit-text-fill-color: var(--color-primary-dark);
+        color: var(--color-primary-dark);
+        font-weight: 700;
+      }
+
+      .navbar-brand span {
+        color: var(--color-primary-dark);
+      }
+
+      .nav-link {
+        color: var(--color-text-muted) !important;
+        font-weight: 500;
+      }
+
+      .nav-link:hover,
+      .nav-link:focus {
+        color: var(--color-primary-dark) !important;
+      }
+
+      .hero-title {
+        font-size: 2.6rem;
+        font-weight: 800;
+        line-height: 1.05;
+        letter-spacing: -0.5px;
+      }
+
+      .hero-text {
+        color: var(--color-primary-dark);
+        font-size: 1.2rem;
+        font-weight: 500;
+        line-height: 1.6;
+        margin-top: 0.5rem;
+        max-width: 60ch;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      @media (max-width: 768px) {
+        .hero-title {
+          font-size: 2rem;
+        }
+        .hero-text {
+          font-size: 1rem;
+        }
+      }
+
+      .profile-img-container {
+        padding: 6px;
+        border-radius: 50%;
+        background: var(--color-primary-light);
+        display: inline-block;
+      }
+
+      .profile-img {
+        border-radius: 50%;
+        border: 3px solid var(--color-bg-elevated);
+      }
+
+      /* Counters */
+      .experience-counter {
+        display: flex;
+        justify-content: center;
+        gap: 80px;
+        margin-top: 30px;
+        margin-bottom: 1.2rem;
+      }
+
+      .experience-counter .counter-item {
+        background: none !important;
+        border: none !important;
+        box-shadow: none !important;
+        padding: 0 !important;
+        text-align: center;
+      }
+
+      .experience-counter .counter-value {
+        font-size: 3rem;
+        font-weight: 700;
+        color: var(--color-primary-dark) !important;
+        background: none !important;
+        -webkit-background-clip: initial !important;
+        -webkit-text-fill-color: var(--color-primary-dark) !important;
+        line-height: 1;
+        margin-bottom: 4px;
+      }
+
+      .experience-counter .counter-label {
+        font-size: 1rem;
+        color: var(--color-text-muted);
+      }
+
+      .hero-buttons {
+        margin-top: 0.5rem;
+      }
+
+      /* Buttons */
+      .btn-primary {
+        background: var(--color-primary);
+        border: none;
+        color: #ffffff !important;
+      }
+
+      .btn-primary:hover {
+        background: var(--color-primary-dark);
+      }
+
+      .btn-outline {
+        border-color: var(--color-primary);
+        color: var(--color-primary-dark);
+        background: rgba(255, 255, 255, 0.9);
+      }
+
+      .btn-outline:hover {
+        background: var(--color-primary);
+        color: #ffffff;
+      }
+
+      /* Section titles */
+      .section-title {
+        color: var(--color-primary-dark);
+        font-weight: 700;
+        margin-bottom: 1.5rem;
+      }
+
+      /* Kill any SVG / custom dividers in your external CSS */
+      .section-divider {
+        display: none !important;
+      }
+
+      .hero-shape {
+        position: relative;
+        height: 0;
+        overflow: hidden;
+        pointer-events: none;
+      }
+
+      /* Timeline basic layout */
+      .timeline-container {
+        position: relative;
+      }
+
+      .timeline-item {
+        display: flex;
+        gap: 24px;
+        margin-bottom: 2rem;
+      }
+
+      .timeline-left {
+        text-align: left;
+        min-width: 210px;
+        padding-right: 18px;
+      }
+
+      .timeline-left .timeline-date {
+        display: block;
+        font-size: 0.9rem;
+        color: var(--color-text-muted);
+        margin-bottom: 6px;
+      }
+
+      .timeline-left .timeline-role,
+      .timeline-left .timeline-position {
+        font-weight: 600;
+        font-size: 0.95rem;
+        color: var(--color-text-main);
+        margin-bottom: 4px;
+      }
+
+      .timeline-left .timeline-organization {
+        font-size: 0.9rem;
+        color: var(--color-text-muted);
+        margin-bottom: 2px;
+      }
+
+      .timeline-left .timeline-location {
+        font-size: 0.85rem;
+        color: var(--color-text-muted);
+      }
+
+      .timeline-title {
+        color: var(--color-primary-dark);
+        font-weight: 700;
+      }
+
+      .timeline-summary {
+        margin-bottom: 8px;
+        color: var(--color-text-main);
+        font-weight: 500;
+      }
+
+      .timeline-text li {
+        color: var(--color-text-main);
+      }
+
+      @media (max-width: 768px) {
+        .timeline-item {
+          flex-direction: column;
+        }
+        .timeline-left {
+          min-width: unset;
+          padding-right: 0;
+        }
+      }
+
+      /* Vertical line & dots: solid blue (assumes your existing line/dot CSS) */
+      #experience .timeline-container::before,
+      #education .timeline-container::before {
+        background: var(--color-primary-light) !important;
+      }
+
+      #experience .timeline-item::before,
+      #education .timeline-item::before {
+        background: var(--color-bg-elevated) !important;
+        border-color: var(--color-primary) !important;
+      }
+
+      /* Projects carousel */
+      #projectCarousel .project-img-container {
+        width: 100%;
+        aspect-ratio: 16 / 9;
+        background: var(--color-bg-elevated);
+        border-radius: 12px;
+        overflow: hidden;
+      }
+
+      #projectCarousel .project-img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center center;
+        display: block;
+      }
+
+      #projectCarousel .project-img.no-crop {
+        object-fit: contain;
+        background: var(--color-bg-elevated);
+      }
+
+      #projectCarousel .project-img.focus-top {
+        object-position: 50% 15%;
+      }
+
+      #projectCarousel.carousel .carousel-indicators,
+      #projectCarousel .carousel-indicators {
+        position: static !important;
+        z-index: 1;
+        margin-top: 14px;
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+        padding: 0;
+      }
+
+      #projectCarousel .carousel-indicators button {
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        background-color: rgba(0, 0, 0, 0.12);
+        border: none;
+      }
+
+      #projectCarousel .carousel-indicators .active {
+        background-color: rgba(0, 0, 0, 0.6);
+      }
+
+      @media (max-width: 576px) {
+        #projectCarousel .carousel-indicators {
+          margin-top: 12px;
+        }
+        #projectCarousel .carousel-indicators button {
+          width: 10px;
+          height: 10px;
+        }
+      }
+
+      .project-card {
+        background: var(--color-bg-elevated);
+        border-radius: 12px;
+        box-shadow: 0 6px 18px rgba(0, 0, 0, 0.04);
+        overflow: hidden;
+        border-top: 3px solid var(--color-primary-light);
+      }
+
+      .project-info {
+        padding: 18px;
+      }
+
+      .project-title {
+        color: var(--color-text-main);
+      }
+
+      .project-desc {
+        color: var(--color-text-main);
+      }
+
+      /* Skills */
+      .hexagon {
+        border-color: var(--color-border-soft);
+        background: var(--color-bg-elevated);
+      }
+
+      .hexagon-content i,
+      .hexagon-content span {
+        color: var(--color-primary-dark);
+      }
+
+      .hexagon:hover {
+        border-color: var(--color-primary-light);
+        box-shadow: 0 14px 30px rgba(59, 86, 148, 0.18);
+        transform: translateY(-4px);
+      }
+
+      /* Contact */
+      .contact-info h3 {
+        color: var(--color-primary-dark);
+      }
+
+      .contact-details li span,
+      .contact-details a {
+        color: var(--color-text-main);
+      }
+
+      .social-link {
+        background: var(--color-bg-elevated);
+        border: 1px solid var(--color-border-soft);
+        color: var(--color-primary-dark);
+      }
+
+      .social-link:hover {
+        background: var(--color-primary);
+        color: #ffffff;
+      }
+
+      /* Education logo on left side */
+.edu-logo-wrapper {
+  margin-top: 0.75rem;
+}
+
+.edu-logo {
+  max-width: 200px;
+  height: auto;
+  display: block;
+}
+
+/* Right side degree text: larger + bolder */
+.degree-title {
+  font-size: 1.25rem;      /* bigger */
+  font-weight: 700;        /* bold */
+  margin-bottom: 0.6rem;
+  color: var(--color-text-main);
+}
+
+.degree-details {
+  font-size: 1rem;         /* slightly larger than default bullets */
+}
+
+.degree-details strong {
+  font-weight: 700;
+}
+.edu-logo-wrapper {
+  margin-top: 0.75rem;
+}
+
+.edu-logo {
+  max-width: 120px;
+  height: auto;
+  display: block;
+}
+
+.degree-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-bottom: 0.6rem;
+  color: var(--color-text-main);
+}
+
+.degree-details {
+  font-size: 1rem;
+}
+
+.degree-details strong {
+  font-weight: 700;
+}
+
+    </style>
   </head>
+
   <body>
     <!-- Enhanced Shimmer Preloader -->
     <div class="shimmer-preloader">
@@ -56,7 +511,7 @@
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg fixed-top">
       <div class="container">
-        <a class="navbar-brand" href="#">Parsa Mirfasihi</a>
+        <a class="navbar-brand" href="#">Parsa <span>Mirfasihi</span></a>
         <button
           class="navbar-toggler"
           type="button"
@@ -92,31 +547,38 @@
     </nav>
 
     <!-- Hero Section -->
-    <section id="hero" class="py-5">
+    <section id="hero" class="section-theme">
       <div class="container">
         <div class="row justify-content-center text-center">
           <div class="col-md-8">
             <div class="profile-img-container">
               <img
-                src="static\image.jpg"
+                src="static/image.jpeg"
                 alt="Parsa Mirfasihi"
                 class="profile-img"
               />
             </div>
             <h1 class="mt-4 hero-title">Hello! I'm Parsa Mirfasihi</h1>
-            <p class="hero-text"><!--change it-->
-              As a passionate VLSI and hardware design enthusiast, I specialize in developing efficient and high-performance hardware solutions with a strong focus on innovation and reliability. My expertise spans the complete ASIC workflow and RTL-to-GDSII flow, including physical design, digital design verification, FPGA-based system design, low-power optimization, SRAM circuit design, and static timing analysis. Proficient in industry-standard Synopsys and Cadence tools, I excel at optimizing circuits for speed, power, and area while ensuring robust hardware security. In addition to my hardware expertise, I leverage Python to develop automation scripts and verification frameworks, enhancing design validation and streamlining workflows. With strong proficiency in SystemVerilog and advanced verification methodologies, I continuously push the boundaries of next-generation semiconductor technologies and hardware optimization.</p>
+            <p class="hero-text">
+              I am a VLSI engineer with hands-on experience in ASIC design,
+              physical design, and verification, supported by a solid background
+              in Python automation and SystemVerilog. I work across the full
+              design flow, from RTL development to physical implementation and
+              timing analysis, and I’m currently seeking an internship or co-op
+              in hardware design, physical design, verification, or application
+              engineering.
+            </p>
             <div class="experience-counter">
               <div class="counter-item">
-                <span class="counter-value" data-count="1">0</span>
+                <span class="counter-value" data-count="2">0</span>
                 <div class="counter-label">Years Experience</div>
               </div>
               <div class="counter-item">
-                <span class="counter-value" data-count="5">0</span>
+                <span class="counter-value" data-count="4">0</span>
                 <div class="counter-label">Projects Completed</div>
               </div>
               <div class="counter-item">
-                <span class="counter-value" data-count="1">0</span>
+                <span class="counter-value" data-count="2">0</span>
                 <div class="counter-label">Publications</div>
               </div>
             </div>
@@ -128,394 +590,453 @@
         </div>
       </div>
       <div class="hero-shape parallax-element" data-speed="-0.15"></div>
-      <!-- Section Divider -->
-      <div class="section-divider">
-        <svg
-          data-name="Layer 1"
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 1200 120"
-          preserveAspectRatio="none"
-        >
-          <path
-            d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z"
-            class="shape-fill"
-          ></path>
-        </svg>
-      </div>
     </section>
 
     <!-- Experience Section -->
+    <section id="experience" class="section-theme">
+      <div class="container">
+        <h2 class="section-title" data-aos="fade-up">Experience</h2>
+        <div class="timeline-container">
+          <!-- Experience Item 1 -->
+          <div class="timeline-item" data-aos="fade-up" data-aos-delay="100">
+            <div class="timeline-left">
+              <time class="timeline-date" datetime="2025-01"
+                >Jan 2025 — Present</time
+              >
+              <div class="timeline-role">Graduate Research Assistant</div>
+              <div class="timeline-organization">
+                <a
+                  href="https://www.sfsu.edu"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  >San Francisco State University</a
+                >
+              </div>
+              <div class="timeline-location">San Francisco, CA</div>
+            </div>
+            <div class="timeline-content">
+              <h3 class="timeline-title">
+                Nano-Electronics &amp; Computing Research Lab
+              </h3>
+              <p class="timeline-summary">
+                Research on machine learning–driven modeling and optimization of
+                VLSI interconnects to improve timing accuracy and design
+                scalability.
+              </p>
+              <ul class="timeline-text">
+                <li>
+                  Designed a data-driven framework to select optimal RC
+                  equivalent models (Lumped-C, π, double-π, distributed) for
+                  gate-delay estimation, achieving under 1% deviation versus
+                  fully distributed models.
+                </li>
+                <li>
+                  Implemented an automated Python–SPICE workflow for timing
+                  extraction and reduced-order model generation using
+                  driving-point admittance propagation.
+                </li>
+                <li>
+                  Validated the approach on 10,000 randomized RC networks:
+                  achieved up to 94% classification accuracy for propagation
+                  delay and 93% for transition time, confirmed by HSPICE
+                  transient analysis.
+                </li>
+                <li>
+                  Improved timing-closure efficiency and scalability for large
+                  IC designs through adaptive ML-based modeling.
+                </li>
+                <li>
+                  <strong
+                    >This work has been submitted to Design Automation
+                    Conference (2026).</strong
+                  >
+                </li>
+              </ul>
+            </div>
+          </div>
 
-      <section id="experience" class="py-5">
-        <div class="container">
-          <h2 class="section-title" data-aos="fade-up">Experience</h2>
-          <div class="timeline-container">
-            <!-- Education Item 1 -->
-            <!--<div class="timeline-item" data-aos="fade-up" data-aos-delay="100">
-              <div class="timeline-left">
-                <span class="timeline-date">January 2025 - Present</span>
-                <span class="timeline-position">Graduate Research Assistant</span>
-                <!--<span class="subject-position">ML Equivalent Modeling of RC Networks for Accurate Timing Analysis</span>-->
-              <!--</div>
-              <div class="timeline-content">
-                <h3 class="timeline-title">Nano-Electronics and Computing Research Lab - NECRL</h3>
-                <p class="timeline-text">
-                  Developed a machine learning–driven framework to automatically select the most suitable equivalent circuit model—Lumped-C, RC, Pi, or Double-Pi—for distributed RC networks. The framework integrates Python-based automation with SPICE simulations to extract key characteristics such as propagation delay, slew rate, and tail behavior under varying resistance, capacitance, and segmentation conditions. Implemented a driving-point admittance propagation algorithm to generate reduced-order interconnect models and benchmarked them against full RC tree simulations, achieving less than 5% error in delay estimation. Performed extensive transient and parametric sweep analyses in HSPICE to validate model accuracy and identify scenarios requiring higher-order representations. This approach not only accelerates interconnect modeling but also addresses critical challenges in timing analysis, including accuracy, scalability, and the trade-off between simulation speed.
+          <!-- Experience Item 2 -->
+          <div class="timeline-item" data-aos="fade-up">
+            <div class="timeline-left">
+              <time class="timeline-date" datetime="2024-09"
+                >Sep 2024 — Apr 2025</time
+              >
+              <div class="timeline-role">
+                System-Level Power Analysis Engineering Intern
+              </div>
+              <div class="timeline-organization">
+                Industrial Assessment Center
+                <p>
+                  <a
+                    href="https://www.iac.sfsu.edu/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    >San Francisco State University</a
+                  >
                 </p>
               </div>
-            </div>-->
-
-               <!-- Experience Item 1 -->
-               <div class="timeline-item" data-aos="fade-up">
-                <div class="timeline-left">
-                  <span class="timeline-date">September 2024- April 2025</span>
-                  <span class="timeline-position">Energy Engineer</span>
-                </div>
-                <div class="timeline-content">
-                  <h3 class="timeline-title">Industrial Assessment Center</h3>
-              
-                  <ul class="timeline-text">
-                    <li>Supported the DOE-funded <strong>Industrial Assessment Center (IAC)</strong> at San Francisco State University.</li>
-                    <li>Delivered <strong>no-cost, professional energy-efficiency assessments</strong> to industrial and manufacturing facilities.</li>
-                    <li>Conducted <strong>on-site inspections</strong> and <strong>data collection</strong>.</li>
-                    <li>Performed <strong>engineering analyses</strong> of energy use, electrical loads, water consumption, and waste generation.</li>
-                    <li>Identified opportunities: <strong>ECOs</strong>, <strong>WMOs</strong>, <strong>WCOs</strong>, <strong>PIOs</strong>, <strong>RGOs</strong>, and <strong>Cogeneration</strong>.</li>
-                    <li>Produced a <strong>confidential report within two months</strong> including utility rate structures, energy breakdowns, and tailored recommendations supported by technical and economic analysis.</li>
-                    <li>Drove <strong>sustainable industrial practices</strong> through actionable, engineering-driven solutions.</li>
-                  </ul>
-                </div>
-              </div>              
-            <!-- Education Item 2 -->
-            <div class="timeline-item" data-aos="fade-up" data-aos-delay="100">
-              <div class="timeline-left">
-                <span class="timeline-date">January 2025 - Present</span>
-                <span class="timeline-position">Graduate Research Assistant</span>
-                <!--<span class="subject-position">ML Equivalent Modeling of RC Networks for Accurate Timing Analysis</span>-->
-              </div>
-              <div class="timeline-content">
-                <h3 class="timeline-title">Nano-Electronics & Computing Research Lab</h3>
-            
-                <ul class="timeline-text">
-                  <li>Built an <strong>ML-driven framework</strong> to automatically choose the best equivalent model—<strong>Lumped-C, RC, Pi, Double-Pi</strong>—for <strong>distributed RC networks</strong>.</li>
-                  <li>Integrated <strong>Python automation</strong> with <strong>SPICE</strong> to extract <strong>propagation delay</strong>, <strong>slew</strong>, and <strong>tail behavior</strong> under varying <strong>R</strong>, <strong>C</strong>, and <strong>segmentation</strong>.</li>
-                  <li>Implemented a <strong>driving-point admittance propagation</strong> algorithm to generate <strong>reduced-order interconnect models</strong>.</li>
-                  <li><strong>Benchmarked</strong> reduced models against full RC tree simulations, achieving <strong>&lt; 5% delay error</strong>.</li>
-                  <li>Performed extensive <strong>transient</strong> and <strong>parametric sweeps in HSPICE</strong> to validate accuracy and flag cases requiring higher-order representations.</li>
-                  <li>Result: <strong>faster interconnect modeling</strong> and improved timing analysis across <strong>accuracy</strong>, <strong>scalability</strong>, and <strong>speed</strong>.</li>
-                </ul>
-              </div>
             </div>
-            
-            <!-- Experience Item 3 -->
-          <div class="timeline-item" data-aos="fade-up">
-            <div class="timeline-left">
-              <span class="timeline-date">Part-time</span>
-              <span class="timeline-position">Teaching Assistant</span>
-  </div>
-  <div class="timeline-content">
-    <h3 class="timeline-title">San Francisco State University</h3>
-    <ul class="timeline-text">
-      <li>Digital Design System / Laboratory</li>
-      <li>Control Systems</li>
-      <li>Computer Systems</li>
-      <li>Linear System Analysis</li>
-      <li>Operational Amplifier System Design</li>
-      <li>Communication Systems</li>
-    </ul>
-  </div>
-</div>
-
-            
+            <div class="timeline-content">
+              <h3 class="timeline-title">Industrial Assessment Center</h3>
+              <p class="timeline-summary">
+                Led DOE-funded energy audits focused on electrical systems and
+                system-level power analysis.
+              </p>
+              <ul class="timeline-text">
+                <li>
+                  Served as audit lead for multiple on-site assessments,
+                  overseeing electrical metering, instrumentation, and data
+                  validation.
+                </li>
+                <li>
+                  Collected and analyzed high-resolution electrical power/load
+                  datasets; performed statistical analysis and feature
+                  extraction using Python and R.
+                </li>
+                <li>
+                  Developed system-level power models to identify peak drivers
+                  and estimate energy and cost savings.
+                </li>
+                <li>
+                  Prepared and co-authored concise technical reports and
+                  presentation materials with the project team for client
+                  stakeholders and incentive submissions.
+                </li>
+              </ul>
+            </div>
           </div>
-        </div>
 
-      <!-- Section Divider -->
-      <div class="section-divider">
-        <svg
-          data-name="Layer 1"
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 1200 120"
-          preserveAspectRatio="none"
-        >
-          <path
-            d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z"
-            class="shape-fill"
-          ></path>
-        </svg>
-      </div>
-    </section>
-
-    <!-- Education Section -->
-    <section id="education" class="py-5">
-      <div class="container">
-        <h2 class="section-title" data-aos="fade-up">Education</h2>
-        <div class="timeline-container">
-          <!-- Education Item 1 -->
+          <!-- Experience Item 3 -->
           <div class="timeline-item" data-aos="fade-up">
             <div class="timeline-left">
-              <span class="timeline-date">2024-2026</span>
-              <span class="timeline-position"
-                >Master of Science in Electrical and Computer Engineering</span
+              <time class="timeline-date" datetime="2024-09"
+                >January 2024 — Present</time
               >
+              <div class="timeline-role">
+                Teaching Assistant
+              </div>
+              <div class="timeline-organization">
+                Department of Electrical and Computer Engineering
+                <p>
+                  <a
+                    href="https://www.iac.sfsu.edu/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    >San Francisco State University</a
+                  >
+                </p>
+              </div>
             </div>
             <div class="timeline-content">
               <h3 class="timeline-title">San Francisco State University</h3>
-
-            </div>
-          </div>
-          <!-- Education Item 2 -->
-          <div class="timeline-item" data-aos="fade-up" data-aos-delay="100">
-            <div class="timeline-left">
-              <span class="timeline-date">2017-2022</span>
-              <span class="timeline-position">Bachelor of Science in Electrical and Electronics Engineering</span>
-            </div>
-            <div class="timeline-content">
-              <h3 class="timeline-title">Iran University of Science and Technology</h3>
-
+              <ul class="timeline-text">
+                <li>Digital Design System / Laboratory</li>
+                <li>Introduction to Microcontrollers</li>
+                <li>Control Systems</li>
+                <li>Computer Systems</li>
+                <li>Linear System Analysis</li>
+                <li>Operational Amplifier System Design</li>
+                <li>Communication Systems</li>
+              </ul>
             </div>
           </div>
         </div>
-      </div>
-      <!-- Section Divider -->
-      <div class="section-divider">
-        <svg
-          data-name="Layer 1"
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 1200 120"
-          preserveAspectRatio="none"
-        >
-          <path
-            d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z"
-            class="shape-fill"
-          ></path>
-        </svg>
       </div>
     </section>
 
-<!-- Projects Section -->
-<style>
-  /* --- Carousel image behavior --- */
-
-  /* Keep a consistent box so slides don't jump in height.
-     Change the aspect ratio if you prefer (e.g., 4 / 3, 3 / 2). */
-  #projectCarousel .project-img-container {
-    width: 100%;
-    aspect-ratio: 16 / 9;
-    background: #ffffff;      /* bar color for letterboxing */
-    border-radius: 12px;
-    overflow: hidden;
-  }
-
-  /* Default: fill the frame (may crop edges) */
-  #projectCarousel .project-img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center center;
-    display: block;
-  }
-
-  /* For slides 2, 3, and 5: show the entire image with no cropping */
-  #projectCarousel .project-img.no-crop {
-    object-fit: contain;
-    background: #ffffff;  /* ensure empty space looks intentional */
-  }
-
-  /* If slide 3 looks better with the focal area higher, keep this; otherwise remove */
-  #projectCarousel .project-img.focus-top {
-    object-position: 50% 15%;
-  }
-</style>
-
-<section id="projects" class="py-5">
+<!-- Education Section -->
+<section id="education" class="section-theme">
   <div class="container">
-    <h2 class="section-title" data-aos="fade-up">Projects</h2>
-    <div class="project-carousel">
-      <div
-        id="projectCarousel"
-        class="carousel slide"
-        data-bs-ride="carousel"
-      >
-        <div class="carousel-inner">
-          <!-- Slide 1: active -->
-          <div class="carousel-item active">
-            <div class="project-card">
-              <div class="project-img-container">
-                <img
-                  src="static/image2.jpeg"
-                  class="project-img"
-                  alt="Project 1"
-                />
-              </div>
-              <div class="project-info">
-                <h3 class="project-title">Custom SRAM Design in 14nm CMOS Technology</h3>
-                <p class="project-desc">
-                  Designed a 16×18 SRAM architecture from scratch using a 14nm PDK in Synopsys Custom Compiler, focusing on area optimization, access time, and power efficiency. Implemented and verified key circuits including the precharge unit, write driver, sense amplifier, address decoder, and SRAM cell array, ensuring robust read/write functionality and signal integrity under worst-case operating conditions. Conducted comprehensive functional verification and power characterization using structured read/write test sequences in Custom Compiler and WaveView. Validated design integrity by clearing DRC and LVS checks, confirming compliance with design rules and layout-versus-schematic consistency.
-                </p>
-              </div>
-            </div>
+    <h2 class="section-title" data-aos="fade-up">Education</h2>
+    <div class="timeline-container">
+
+      <!-- Education Item 1 -->
+      <div class="timeline-item" data-aos="fade-up">
+        <!-- LEFT SIDE -->
+        <div class="timeline-left">
+          <time class="timeline-date" datetime="2024-01">
+            January 2024 — May 2026
+          </time>
+
+          <div class="timeline-organization">
+            <a href="https://www.sfsu.edu/" target="_blank">
+              San Francisco State University
+            </a>
           </div>
 
-          <!-- Slide 2 (no crop) -->
-          <div class="carousel-item">
-            <div class="project-card">
-              <div class="project-img-container">
-                <img
-                  src="static/ML.jpg"
-                  class="project-img no-crop"
-                  alt="Project 2"
-                />
-              </div>
-              <div class="project-info">
-                <h3 class="project-title">A Real-Time Intelligent Framework for Automated Object Recognition and Classification</h3>
-                <p class="project-desc">
-                  This project focused on the design and implementation of a real-time intelligent system for object detection and classification in autonomous vehicles, leveraging deep learning and computer vision to enhance driving safety and efficiency. The system was implemented using TensorFlow on an NVIDIA Quadro 1000P GPU, enabling GPU-accelerated processing for real-time performance. Advanced architectures such as SSD, Faster R-CNN, and Mask R-CNN were evaluated on the MS COCO dataset, where the system achieved 21 FPS with SSD + InceptionV2 for high-speed detection and 88% mAP with Mask R-CNN for high-accuracy classification. The work demonstrates the potential of vision-based AI systems as scalable and cost-effective alternatives to sensor-heavy approaches in autonomous driving and related intelligent applications.
-                </p>
-              </div>
-            </div>
-          </div>
-
-          <!-- Slide 3 (no crop, optional top focus) -->
-          <div class="carousel-item">
-            <div class="project-card">
-              <div class="project-img-container">
-                <img
-                  src="static/J750.jpg"
-                  class="project-img no-crop focus-top"
-                  alt="Project 3"
-                />
-              </div>
-              <div class="project-info">
-                <h3 class="project-title">Teradyne J750 Semiconductor Test System Training & Setup</h3>
-                <p class="project-desc">
-                  Collaborated with Teradyne experts during the on-campus installation of the J750 semiconductor test system at the Nano Electronics & Computing Research Laboratory (SFSU). Completed extensive hands-on training covering test procedures, system configuration, hardware/software integration, and IG-XL software development for device testing. Assisted with initial system calibration and conducted scan test, ADC, and DAC test development to validate device functionality. Authored a comprehensive technical report documenting the J750’s specifications, capabilities, and setup process—establishing a reference guide for future lab users.
-                </p>
-              </div>
-            </div>
-          </div>
-
-          <!-- Slide 4 -->
-          <div class="carousel-item">
-            <div class="project-card">
-              <div class="project-img-container">
-                <img
-                  src="static/image1.jpg"
-                  class="project-img"
-                  alt="Project 4"
-                />
-              </div>
-              <div class="project-info">
-                <h3 class="project-title">ASIC Implementation of Motion Estimator in 14nm FinFET Technology</h3>
-                <p class="project-desc">
-                  Designed and implemented a motion estimator for video compression using the Block-Matching Algorithm, with a 16×16 reference block and a 32×32 search block. Developed Verilog modules including Processing Elements, Comparator, and Controller, organized in a pipelined architecture for high throughput. Completed the full RTL-to-GDSII flow, covering front-end synthesis, static timing analysis, and back-end physical design. Performed area and power optimization, ECO-based hold violation correction, and physical verification with DRC to ensure layout sign-off. This project reinforced expertise in ASIC design, physical implementation, and advanced node technology (14nm FinFET).
-                </p>
-              </div>
-            </div>
-          </div>
-
-          <!-- Slide 5 (no crop) -->
-          <div class="carousel-item">
-            <div class="project-card">
-              <div class="project-img-container">
-                <img
-                  src="static/pic.png"
-                  class="project-img no-crop"
-                  alt="Project 5"
-                />
-              </div>
-              <div class="project-info">
-                <h3 class="project-title">DFT-Oriented PCB for Power and Signal Integrity Validation of Mixed-Signal SoC using Teradyne J750</h3>
-                <p class="project-desc">
-                  Designed a custom PCB to support Design-for-Test (DFT) validation of a mixed-signal SoC, focusing on power delivery network (PDN) stability, clock distribution, and high-speed signal integrity. The board incorporated decoupling capacitor networks, controlled impedance traces, analog test access points, and boundary-scan hooks to monitor IR drop, voltage ripple, jitter, and crosstalk across digital and analog domains. Leveraged the Teradyne J750 Automated Test Equipment (ATE) to apply functional and parametric test vectors, measure delay and noise margins, and characterize analog/digital interactions under test stress conditions. This work enhanced expertise in mixed-signal PCB design, DFT methodologies, and ATE-based validation, bridging SoC test strategy with practical hardware implementation.
-                </p>
-              </div>
-            </div>
+          <div class="edu-logo-wrapper">
+            <img src="static/sfsu.png" class="edu-logo" alt="SFSU Logo" />
           </div>
         </div>
 
-        
+        <!-- RIGHT SIDE -->
+        <div class="timeline-content">
+          <h3 class="timeline-title">San Francisco State University</h3>
 
-        <!-- Indicators: 5 total, first is active -->
-        <div class="carousel-indicators">
-          <button
-            type="button"
-            data-bs-target="#projectCarousel"
-            data-bs-slide-to="0"
-            class="active"
-            aria-current="true"
-            aria-label="Slide 1"
-          ></button>
-          <button
-            type="button"
-            data-bs-target="#projectCarousel"
-            data-bs-slide-to="1"
-            aria-label="Slide 2"
-          ></button>
-          <button
-            type="button"
-            data-bs-target="#projectCarousel"
-            data-bs-slide-to="2"
-            aria-label="Slide 3"
-          ></button>
-          <button
-            type="button"
-            data-bs-target="#projectCarousel"
-            data-bs-slide-to="3"
-            aria-label="Slide 4"
-          ></button>
-          <button
-            type="button"
-            data-bs-target="#projectCarousel"
-            data-bs-slide-to="4"
-            aria-label="Slide 5"
-          ></button>
+          <p class="degree-title">
+            Master of Science in Electrical and Computer Engineering
+          </p>
+
+          <div class="degree-detail-line">
+            <strong>Key courses:</strong>
+            Advanced Digital Design, Digital VLSI Design, Analog IC Design,
+            Digital Design Verification
+          </div>
+
+          <div class="degree-detail-line">
+            <strong>GPA:</strong> 4.0 / 4.0
+          </div>
         </div>
       </div>
+
+      <!-- Education Item 2 -->
+      <div class="timeline-item" data-aos="fade-up" data-aos-delay="100">
+        <!-- LEFT -->
+        <div class="timeline-left">
+          <time class="timeline-date" datetime="2017-09">
+            September 2017 — May 2022
+          </time>
+
+          <div class="timeline-organization">
+            <a href="https://www.iust.ac.ir/en" target="_blank">
+              Iran University of Science and Technology
+            </a>
+          </div>
+
+          <div class="edu-logo-wrapper">
+            <img src="static/iust.png" class="edu-logo" alt="IUST Logo" />
+          </div>
+        </div>
+
+        <!-- RIGHT -->
+        <div class="timeline-content">
+          <h3 class="timeline-title">
+            Iran University of Science and Technology
+          </h3>
+
+          <p class="degree-title">
+            Bachelor of Science in Electrical Engineering
+          </p>
+
+          <div class="degree-detail-line">
+            <strong>GPA:</strong> 3.8 / 4.0
+          </div>
+        </div>
+      </div>
+
     </div>
   </div>
 </section>
-      <!-- Section Divider -->
-      <div class="section-divider">
-        <svg
-          data-name="Layer 1"
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 1200 120"
-          preserveAspectRatio="none"
-        >
-          <path
-            d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z"
-            class="shape-fill"
-          ></path>
-        </svg>
+
+
+    <!-- Projects Section -->
+    <section id="projects" class="section-theme">
+      <div class="container">
+        <h2 class="section-title" data-aos="fade-up">Projects</h2>
+        <div class="project-carousel">
+          <div
+            id="projectCarousel"
+            class="carousel slide"
+            data-bs-ride="carousel"
+          >
+            <div class="carousel-inner">
+              <!-- Slide 1 -->
+              <div class="carousel-item active">
+                <div class="project-card">
+                  <div class="project-img-container">
+                    <img
+                      src="static/image2.jpeg"
+                      class="project-img"
+                      alt="Project 1"
+                    />
+                  </div>
+                  <div class="project-info">
+                    <h3 class="project-title">
+                      Custom SRAM Design in 14nm CMOS Technology
+                    </h3>
+                    <p class="project-desc">
+                      Designed a 16×18 SRAM architecture from scratch using a
+                      14nm PDK in Synopsys Custom Compiler, focusing on area
+                      optimization, access time, and power efficiency.
+                      Implemented and verified key circuits including the
+                      precharge unit, write driver, sense amplifier, address
+                      decoder, and SRAM cell array, ensuring robust read/write
+                      functionality and signal integrity under worst-case
+                      operating conditions. Conducted comprehensive functional
+                      verification and power characterization using structured
+                      read/write test sequences in Custom Compiler and WaveView.
+                      Validated design integrity by clearing DRC and LVS checks,
+                      confirming compliance with design rules and
+                      layout-versus-schematic consistency.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Slide 2 -->
+              <div class="carousel-item">
+                <div class="project-card">
+                  <div class="project-img-container">
+                    <img
+                      src="static/ML.jpg"
+                      class="project-img no-crop"
+                      alt="Project 2"
+                    />
+                  </div>
+                  <div class="project-info">
+                    <h3 class="project-title">
+                      A Real-Time Intelligent Framework for Automated Object
+                      Recognition and Classification
+                    </h3>
+                    <p class="project-desc">
+                      This project focused on the design and implementation of a
+                      real-time intelligent system for object detection and
+                      classification in autonomous vehicles, leveraging deep
+                      learning and computer vision to enhance driving safety and
+                      efficiency. The system was implemented using TensorFlow on
+                      an NVIDIA Quadro 1000P GPU, enabling GPU-accelerated
+                      processing for real-time performance. Advanced
+                      architectures such as SSD, Faster R-CNN, and Mask R-CNN
+                      were evaluated on the MS COCO dataset, where the system
+                      achieved 21 FPS with SSD + InceptionV2 for high-speed
+                      detection and 88% mAP with Mask R-CNN for high-accuracy
+                      classification. The work demonstrates the potential of
+                      vision-based AI systems as scalable and cost-effective
+                      alternatives to sensor-heavy approaches in autonomous
+                      driving and related intelligent applications.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Slide 3 -->
+              <div class="carousel-item">
+                <div class="project-card">
+                  <div class="project-img-container">
+                    <img
+                      src="static/J750.jpg"
+                      class="project-img no-crop focus-top"
+                      alt="Project 3"
+                    />
+                  </div>
+                  <div class="project-info">
+                    <h3 class="project-title">
+                      Teradyne J750 Semiconductor Test System Training &amp;
+                      Setup
+                    </h3>
+                    <p class="project-desc">
+                      Collaborated with Teradyne experts during the on-campus
+                      installation of the J750 semiconductor test system at the
+                      Nano Electronics &amp; Computing Research Laboratory
+                      (SFSU). Completed extensive hands-on training covering
+                      test procedures, system configuration, hardware/software
+                      integration, and IG-XL software development for device
+                      testing. Assisted with initial system calibration and
+                      conducted scan test, ADC, and DAC test development to
+                      validate device functionality. Authored a comprehensive
+                      technical report documenting the J750’s specifications,
+                      capabilities, and setup process—establishing a reference
+                      guide for future lab users.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Slide 4 -->
+              <div class="carousel-item">
+                <div class="project-card">
+                  <div class="project-img-container">
+                    <img
+                      src="static/image1.jpg"
+                      class="project-img"
+                      alt="Project 4"
+                    />
+                  </div>
+                  <div class="project-info">
+                    <h3 class="project-title">
+                      ASIC Implementation of Motion Estimator in 14nm FinFET
+                      Technology
+                    </h3>
+                    <p class="project-desc">
+                      Designed and implemented a motion estimator for video
+                      compression using the Block-Matching Algorithm, with a
+                      16×16 reference block and a 32×32 search block. Developed
+                      Verilog modules including Processing Elements, Comparator,
+                      and Controller, organized in a pipelined architecture for
+                      high throughput. Completed the full RTL-to-GDSII flow,
+                      covering front-end synthesis, static timing analysis, and
+                      back-end physical design. Performed area and power
+                      optimization, ECO-based hold violation correction, and
+                      physical verification with DRC to ensure layout sign-off.
+                      This project reinforced expertise in ASIC design, physical
+                      implementation, and advanced node technology (14nm
+                      FinFET).
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Indicators -->
+            <div class="carousel-indicators">
+              <button
+                type="button"
+                data-bs-target="#projectCarousel"
+                data-bs-slide-to="0"
+                class="active"
+                aria-current="true"
+                aria-label="Slide 1"
+              ></button>
+              <button
+                type="button"
+                data-bs-target="#projectCarousel"
+                data-bs-slide-to="1"
+                aria-label="Slide 2"
+              ></button>
+              <button
+                type="button"
+                data-bs-target="#projectCarousel"
+                data-bs-slide-to="2"
+                aria-label="Slide 3"
+              ></button>
+              <button
+                type="button"
+                data-bs-target="#projectCarousel"
+                data-bs-slide-to="3"
+                aria-label="Slide 4"
+              ></button>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
 
+
     <!-- Skills Section -->
-    <section id="skills" class="py-5">
+    <section id="skills" class="section-theme">
       <div class="container">
         <h2 class="section-title" data-aos="fade-up">Skills</h2>
         <div class="hexagon-grid">
-          <!-- Programming Languages -->
           <div class="hexagon" data-aos="zoom-in">
             <div class="hexagon-content">
               <i class="fa-solid fa-code"></i>
               <span>Verilog</span>
             </div>
           </div>
-          
+
           <div class="hexagon" data-aos="zoom-in">
             <div class="hexagon-content">
               <i class="fab fa-python"></i>
               <span>Python</span>
             </div>
           </div>
-          
+
           <div class="hexagon" data-aos="zoom-in">
             <div class="hexagon-content">
               <i class="fa-solid fa-circle-check"></i>
               <span>UVM</span>
             </div>
-          </div>          
+          </div>
 
           <div class="hexagon" data-aos="zoom-in" data-aos-delay="250">
             <div class="hexagon-content">
@@ -523,118 +1044,75 @@
               <span>TCL</span>
             </div>
           </div>
-          
+
           <div class="hexagon" data-aos="zoom-in" data-aos-delay="50">
             <div class="hexagon-content">
               <i class="fa-solid fa-c"></i>
               <span>C/C++</span>
             </div>
           </div>
-          
+
           <div class="hexagon" data-aos="zoom-in" data-aos-delay="50">
             <div class="hexagon-content">
               <i class="fa-solid fa-gem"></i>
               <span>Perl</span>
             </div>
           </div>
-          
-          <!-- Frameworks -->
-          <!--<div class="hexagon" data-aos="zoom-in" data-aos-delay="100">
-            <div class="hexagon-content">
-              <i class="fa-solid fa-microchip"></i>
-              <span>Physical Design</span>
-            </div>
-          </div>-->
-          
+
           <div class="hexagon" data-aos="zoom-in" data-aos-delay="150">
             <div class="hexagon-content">
               <i class="fa-solid fa-wave-square"></i>
               <span>STA</span>
             </div>
           </div>
-          
+
           <div class="hexagon" data-aos="zoom-in" data-aos-delay="200">
             <div class="hexagon-content">
               <i class="fa-solid fa-microchip"></i>
-              <center><span>Synopsys <br> EDA</span></center>
+              <center><span>Synopsys <br />EDA</span></center>
             </div>
           </div>
-          
-          <!-- Tools -->
+
           <div class="hexagon" data-aos="zoom-in" data-aos-delay="300">
             <div class="hexagon-content">
               <i class="fa-solid fa-brain"></i>
               <span>LangChain</span>
             </div>
           </div>
-          
+
           <div class="hexagon" data-aos="zoom-in" data-aos-delay="350">
             <div class="hexagon-content">
               <i class="fa-brands fa-linux"></i>
               <span>Linux/Unix</span>
             </div>
           </div>
-          
+
           <div class="hexagon" data-aos="zoom-in" data-aos-delay="400">
             <div class="hexagon-content">
               <i class="fa-solid fa-diagram-project"></i>
               <span>VHDL</span>
             </div>
           </div>
-          
+
           <div class="hexagon" data-aos="zoom-in" data-aos-delay="450">
             <div class="hexagon-content">
               <i class="fa-solid fa-robot"></i>
-              <span>Machine <br> Learning</span>
+              <span>Machine <br />Learning</span>
             </div>
           </div>
-          
+
           <div class="hexagon" data-aos="zoom-in" data-aos-delay="500">
             <div class="hexagon-content">
               <i class="fa-solid fa-vector-square"></i>
               <span>PCB Design</span>
             </div>
           </div>
-          
-          <!--<div class="hexagon" data-aos="zoom-in" data-aos-delay="600">
-            <div class="hexagon-content">
-              <i class="fa-solid fa-drafting-compass"></i>
-              <span>Altium Designer</span>
-            </div>
-          </div>-->          
-      <!-- Section Divider -->
-      <div class="section-divider">
-        <svg
-          data-name="Layer 1"
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 1200 120"
-          preserveAspectRatio="none"
-        >
-          <path
-            d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z"
-            class="shape-fill"
-          ></path>
-        </svg>
+        </div>
       </div>
     </section>
 
-      <div class="section-divider">
-        <svg
-          data-name="Layer 1"
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 1200 120"
-          preserveAspectRatio="none"
-        >
-          <path
-            d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z"
-            class="shape-fill"
-          ></path>
-        </svg>
-      </div>
-    </section> 
-
     <!-- Contact Section -->
-    <section id="contact" class="py-5">
+    <section id="contact" class="section-theme">
       <div class="container">
         <h2 class="section-title" data-aos="fade-up">Contact Me</h2>
         <div class="row">
@@ -652,8 +1130,8 @@
                 </li>
                 <li>
                   <i class="fas fa-envelope"></i>
-                  <a href="mailto:dmpanchal.201@gmail.com"
-                    >mirfasihiparsa@gmail.com</a
+                  <a href="mailto:mirfasihiparsa@gmail.com"
+                    >mirfasihiparsaa@gmail.com</a
                   >
                 </li>
               </ul>
@@ -665,7 +1143,11 @@
                 >
                   <i class="fab fa-linkedin"></i>
                 </a>
-                <a href="static\Resume2025.pdf" class="social-link" download>
+                <a
+                  href="static/Parsa Mirfasihi Resume.pdf"
+                  class="social-link"
+                  download
+                >
                   <i class="fas fa-download"></i>
                 </a>
               </div>
@@ -718,7 +1200,3 @@
     <script src="script.js"></script>
   </body>
 </html>
-
-
-
-
